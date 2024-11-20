@@ -12,13 +12,16 @@ public class Hotspot : MonoBehaviour
 
 
     [SerializeField] private XRSimpleInteractable InteractableComp;
+    [SerializeField] private Color Initialcolor;
+    [SerializeField] private Color HoveredColor;
 
     private void Start()
     {
         OnValidate();
         InteractableComp.selectEntered.AddListener(change);
-        InteractableComp.hoverEntered.AddListener(Materialchange);
+       // InteractableComp.hoverEntered.AddListener(Materialchange);
         Debug.Log("start initiated");
+
     }
 
     private void OnValidate()
@@ -36,36 +39,26 @@ public class Hotspot : MonoBehaviour
     private void change(SelectEnterEventArgs arg0)
     {
         Debug.Log("ENTERED");
-        if (!arg0.interactorObject.transform.TryGetComponent(out IndretsVRSceneManager sceneManager))
-            return;
 
-        sceneManager.Teleport();
+        IndretsVRSceneManager sceneManager = arg0.interactableObject.transform.GetComponent<IndretsVRSceneManager>();
+        if (sceneManager)
+            sceneManager.Teleport();
+        else
+            Debug.Log("manager not found");
     }
 
-    private void Materialchange(HoverEnterEventArgs arg0)
+    private void changematerial(Color color)
     {
-        Debug.Log("hovering");
         MeshRenderer renderer = GetComponent<MeshRenderer>();
 
         if (renderer == null)
         {
-            Debug.LogError("MeshRenderer not found!");
             return;
         }
-
-        // Check if material is correctly accessed
         Material mat = renderer.material;
-        Debug.Log(mat.color);
-        if (mat == null)
-        {
-            Debug.LogError("Material not found!");
-            return;
-        }
+        mat.SetColor("_BaseColor", color);
+    } 
 
-        // Set the color
-        mat.SetColor("_BaseColor",Color.green);
-        Debug.Log("Color set to green.");
-    }
 
 
 }
