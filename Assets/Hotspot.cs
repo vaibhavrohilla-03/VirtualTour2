@@ -12,16 +12,23 @@ public class Hotspot : MonoBehaviour
 
 
     [SerializeField] private XRSimpleInteractable InteractableComp;
-    [SerializeField] private Color Initialcolor;
-    [SerializeField] private Color HoveredColor;
+    private Material Initialmaterial;
 
+    [SerializeField] private Material HoverMaterial;
+
+    private materiallerp MLinstance;
+
+    MeshRenderer renderer;
     private void Start()
     {
         OnValidate();
-        InteractableComp.selectEntered.AddListener(change);
-       // InteractableComp.hoverEntered.AddListener(Materialchange);
+        InteractableComp.selectEntered.AddListener(ChangeScene);
+        InteractableComp.hoverEntered.AddListener(OnHover);
+        InteractableComp.hoverExited.AddListener(OffHover);
         Debug.Log("start initiated");
-
+        MLinstance = GetComponent<materiallerp>();
+        renderer = GetComponent<MeshRenderer>();
+        Initialmaterial = renderer.material;
     }
 
     private void OnValidate()
@@ -36,7 +43,7 @@ public class Hotspot : MonoBehaviour
         }
     }
 
-    private void change(SelectEnterEventArgs arg0)
+    private void ChangeScene(SelectEnterEventArgs arg0)
     {
         Debug.Log("ENTERED");
 
@@ -47,18 +54,22 @@ public class Hotspot : MonoBehaviour
             Debug.Log("manager not found");
     }
 
-    private void changematerial(Color color)
+    private void changematerial(Material material)
     {
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-
-        if (renderer == null)
-        {
-            return;
-        }
-        Material mat = renderer.material;
-        mat.SetColor("_BaseColor", color);
+        renderer.material = material;
     } 
 
 
+    private void OnHover(HoverEnterEventArgs arg0)
+    {
+        MLinstance.enabled = false;
+        changematerial(HoverMaterial);
 
+    }
+
+    private void OffHover(HoverExitEventArgs arg0) 
+    {
+        changematerial(Initialmaterial);
+        MLinstance.enabled = true;
+    }
 }
