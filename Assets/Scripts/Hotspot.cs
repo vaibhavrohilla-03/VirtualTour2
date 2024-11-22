@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using IndretsVRVirtualTour;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class Hotspot : MonoBehaviour
@@ -12,17 +13,30 @@ public class Hotspot : MonoBehaviour
 
 
     [SerializeField] private XRSimpleInteractable InteractableComp;
-    private Material Initialmaterial;
+
 
     [SerializeField] private Material HoverMaterial;
+
+    [SerializeField] private Material SelectMaterial;
+
+    private Material Initialmaterial;
 
     private materiallerp MLinstance;
 
     MeshRenderer renderer;
-    private void Start()
+
+   
+
+    private void Awake()
     {
         OnValidate();
-        InteractableComp.selectEntered.AddListener(ChangeScene);
+
+    }
+    private void Start()
+    {
+       
+        InteractableComp.selectEntered.AddListener(OnSelectEnter);
+        InteractableComp.selectExited.AddListener(OnSelectExit);
         InteractableComp.hoverEntered.AddListener(OnHover);
         InteractableComp.hoverExited.AddListener(OffHover);
         Debug.Log("start initiated");
@@ -33,21 +47,47 @@ public class Hotspot : MonoBehaviour
 
     private void OnValidate()
     {
-        if (InteractableComp != null)
+        if (!InteractableComp)
         {
             if(TryGetComponent(out InteractableComp))
             {
                 Debug.Log("got component");
             }
-
         }
+       
     }
 
-    private void ChangeScene(SelectEnterEventArgs arg0)
-    {
-        Debug.Log("ENTERED");
+ 
 
-        IndretsVRSceneManager sceneManager = arg0.interactableObject.transform.GetComponent<IndretsVRSceneManager>();
+    private void OnSelectEnter(SelectEnterEventArgs arg0)
+    {
+        changematerial(SelectMaterial);
+        
+
+    }
+
+    private void OnSelectExit(SelectExitEventArgs arg0)
+    {
+        changematerial(Initialmaterial);
+        //ChangeScene();
+    }
+
+    private void OnHover(HoverEnterEventArgs arg0)
+    {
+        changematerial(HoverMaterial);
+
+    }
+
+    private void OffHover(HoverExitEventArgs arg0) 
+    {
+        changematerial(Initialmaterial);
+    }
+
+
+    private void ChangeScene()
+    {
+
+        IndretsVRSceneManager sceneManager = GetComponent<IndretsVRSceneManager>();
         if (sceneManager)
             sceneManager.Teleport();
         else
@@ -57,19 +97,7 @@ public class Hotspot : MonoBehaviour
     private void changematerial(Material material)
     {
         renderer.material = material;
-    } 
-
-
-    private void OnHover(HoverEnterEventArgs arg0)
-    {
-        MLinstance.enabled = false;
-        changematerial(HoverMaterial);
-
     }
 
-    private void OffHover(HoverExitEventArgs arg0) 
-    {
-        changematerial(Initialmaterial);
-        MLinstance.enabled = true;
-    }
+
 }
