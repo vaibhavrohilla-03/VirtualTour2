@@ -13,7 +13,7 @@ public class Hotspot : MonoBehaviour
 
 
     [SerializeField] private XRSimpleInteractable InteractableComp;
-
+    [SerializeField] private Zoom ZoomComp;
 
     [SerializeField] private Material HoverMaterial;
 
@@ -23,7 +23,7 @@ public class Hotspot : MonoBehaviour
 
     private materiallerp MLinstance;
 
-    MeshRenderer renderer;
+    MeshRenderer _renderer;
 
    
 
@@ -41,20 +41,27 @@ public class Hotspot : MonoBehaviour
         InteractableComp.hoverExited.AddListener(OffHover);
         Debug.Log("start initiated");
         MLinstance = GetComponent<materiallerp>();
-        renderer = GetComponent<MeshRenderer>();
-        Initialmaterial = renderer.material;
+        _renderer = GetComponent<MeshRenderer>();
+        Initialmaterial = _renderer.material;
     }
 
     private void OnValidate()
     {
         if (!InteractableComp)
         {
-            if(TryGetComponent(out InteractableComp))
+            if (TryGetComponent(out InteractableComp))
             {
                 Debug.Log("got component");
             }
         }
-       
+        if (!ZoomComp)
+        {
+            if (TryGetComponent(out ZoomComp))
+            {
+                Debug.Log("got zoom comp");
+            }
+
+        }
     }
 
  
@@ -69,6 +76,7 @@ public class Hotspot : MonoBehaviour
     private void OnSelectExit(SelectExitEventArgs arg0)
     {
         changematerial(Initialmaterial);
+        ZoomComp.StartTransition();
         //ChangeScene();
     }
 
@@ -96,7 +104,7 @@ public class Hotspot : MonoBehaviour
 
     private void changematerial(Material material)
     {
-        renderer.material = material;
+        _renderer.material = material;
     }
 
 

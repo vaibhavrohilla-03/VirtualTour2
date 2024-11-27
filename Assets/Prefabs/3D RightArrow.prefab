@@ -15,8 +15,6 @@ GameObject:
   - component: {fileID: 4586713668539379947}
   - component: {fileID: 4265883602462974766}
   - component: {fileID: 7810605877892242790}
-  - component: {fileID: 4683726930413247153}
-  - component: {fileID: 2476265722394488014}
   m_Layer: 0
   m_Name: 3D RightArrow
   m_TagString: Untagged
@@ -199,7 +197,6 @@ MonoBehaviour:
   InteractableComp: {fileID: 4586713668539379947}
   HoverMaterial: {fileID: 2100000, guid: a82019aec63b43f4c9cc95daaef0b515, type: 2}
   SelectMaterial: {fileID: 2100000, guid: e3cadb222b2fa9a45963f73bbe62dabf, type: 2}
-  TranstionComp: {fileID: 2476265722394488014}
 --- !u!114 &7810605877892242790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,31 +210,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScene: scene_2
---- !u!114 &4683726930413247153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2838611823499776047}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75508fb7e610a3246b1512924c04f4f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeDuration: 1
---- !u!114 &2476265722394488014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2838611823499776047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fc107ec5b3becc41b9e5e163c43d8b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerCamera: {fileID: 0}
-  FinalFieldOfView: 20
-  duration: 3
