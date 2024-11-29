@@ -5,36 +5,33 @@ using UnityEngine;
 public class Zoom : MonoBehaviour
 {
 
-    [SerializeField] private Camera TransitionCamera;
+    //[SerializeField] private Camera TransitionCamera;
     [SerializeField] private Camera XRCamera;
-    [SerializeField] private float FinalFieldOfView;
+    [SerializeField] private float FinalFieldOfView = 30.0f;
     [SerializeField] private LeanTweenType CurveType = LeanTweenType.easeOutExpo;
     public float duration = 3.0f;
 
-    private float height;
 
-    void Start()
+    private void Awake()
     {
-        TransitionCamera.enabled = false;
-        XRCamera.enabled = true;
-        height = TransitionCamera.gameObject.transform.position.y;
+        OnValidate();
     }
-    private void SwitchCamera()
+    private void OnValidate()
     {
-        TransitionCamera.enabled = !TransitionCamera.enabled;
-        XRCamera.enabled = !XRCamera.enabled;
-        TransitionCamera.transform.LookAt(new Vector3(gameObject.transform.position.x,height,0));
+        XRCamera = Camera.main;
     }
 
     public void  MakeZoom()
     {
-        SwitchCamera();
+       // SwitchCamera();
 
-        LeanTween.value(TransitionCamera.gameObject, TransitionCamera.fieldOfView, FinalFieldOfView, duration)
+        LeanTween.value(XRCamera.gameObject, XRCamera.fieldOfView, FinalFieldOfView, duration)
             .setEase(CurveType)
             .setOnUpdate((float value) =>
             {
-                TransitionCamera.fieldOfView = value; // Update the field of view
+                XRCamera.fieldOfView = value;  // Update the field of view
+
+
             })
             .setOnComplete(() =>
             {

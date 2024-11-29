@@ -22,6 +22,7 @@ public class Hotspot : MonoBehaviour
 
 
 
+
     private Material Initialmaterial;
 
     private materiallerp MLinstance;
