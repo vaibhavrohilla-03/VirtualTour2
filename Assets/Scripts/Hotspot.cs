@@ -14,10 +14,13 @@ public class Hotspot : MonoBehaviour
 
     [SerializeField] private XRSimpleInteractable InteractableComp;
     [SerializeField] private Zoom ZoomComp;
+    [SerializeField] private ChangeScene SceneComp;
 
     [SerializeField] private Material HoverMaterial;
 
     [SerializeField] private Material SelectMaterial;
+
+
 
     private Material Initialmaterial;
 
@@ -62,6 +65,13 @@ public class Hotspot : MonoBehaviour
             }
 
         }
+        if (!SceneComp)
+        {
+            if (TryGetComponent(out SceneComp))
+            {
+                Debug.Log("got SceneComp");
+            }
+        }
     }
 
  
@@ -69,15 +79,12 @@ public class Hotspot : MonoBehaviour
     private void OnSelectEnter(SelectEnterEventArgs arg0)
     {
         changematerial(SelectMaterial);
-        
-
     }
 
     private void OnSelectExit(SelectExitEventArgs arg0)
     {
         changematerial(Initialmaterial);
-        ZoomComp.StartTransition();
-        //ChangeScene();
+        StartCoroutine(Transition());
     }
 
     private void OnHover(HoverEnterEventArgs arg0)
@@ -91,21 +98,21 @@ public class Hotspot : MonoBehaviour
         changematerial(Initialmaterial);
     }
 
-
-    private void ChangeScene()
-    {
-
-        IndretsVRSceneManager sceneManager = GetComponent<IndretsVRSceneManager>();
-        if (sceneManager)
-            sceneManager.Teleport();
-        else
-            Debug.Log("manager not found");
-    }
-
     private void changematerial(Material material)
     {
         _renderer.material = material;
     }
+
+    IEnumerator Transition()
+    {   
+        ZoomComp.MakeZoom();
+
+        yield return new WaitForSeconds(ZoomComp.duration + 0.5f);
+
+        SceneComp.Change();
+
+    }
+
 
 
 }

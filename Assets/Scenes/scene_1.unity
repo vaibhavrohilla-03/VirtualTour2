@@ -734,6 +734,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
+--- !u!1001 &2044852644
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_Name
+      value: XR Device Simulator
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!1001 &2081939281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,6 +945,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4265883602462974766, guid: 0d722336e69456446961b1fb18209dca,
         type: 3}
+      propertyPath: ZoomComp
+      value: 
+      objectReference: {fileID: 7192286199759887339}
+    - target: {fileID: 4265883602462974766, guid: 0d722336e69456446961b1fb18209dca,
+        type: 3}
+      propertyPath: SceneComp
+      value: 
+      objectReference: {fileID: 7192286199759887347}
+    - target: {fileID: 4265883602462974766, guid: 0d722336e69456446961b1fb18209dca,
+        type: 3}
       propertyPath: TranstionComp
       value: 
       objectReference: {fileID: 0}
@@ -885,14 +963,32 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 2008003578}
+    - target: {fileID: 4586713668539379947, guid: 0d722336e69456446961b1fb18209dca,
+        type: 3}
+      propertyPath: m_Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 7192286199759887348}
+    - target: {fileID: 7650582266145473307, guid: 0d722336e69456446961b1fb18209dca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2838611823499776047, guid: 0d722336e69456446961b1fb18209dca,
         type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 7192286199759887348}
+    - targetCorrespondingSourceObject: {fileID: 2838611823499776047, guid: 0d722336e69456446961b1fb18209dca,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 7192286199759887339}
+    - targetCorrespondingSourceObject: {fileID: 2838611823499776047, guid: 0d722336e69456446961b1fb18209dca,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7192286199759887347}
   m_SourcePrefab: {fileID: 100100000, guid: 0d722336e69456446961b1fb18209dca, type: 3}
 --- !u!1 &7192286199759887338 stripped
 GameObject:
@@ -915,7 +1011,42 @@ MonoBehaviour:
   TransitionCamera: {fileID: 296882842}
   XRCamera: {fileID: 173540332}
   FinalFieldOfView: 32
-  duration: 1.5
+  CurveType: 11
+  duration: 2
+--- !u!114 &7192286199759887347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192286199759887338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0663358eff14c4d9590b20fe934593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: scene_2
+--- !u!65 &7192286199759887348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192286199759887338}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.040787138, y: 0.023748834, z: 0.011305744}
+  m_Center: {x: -0.0009098566, y: -0.00076499244, z: 0.0007489588}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -927,3 +1058,4 @@ SceneRoots:
   - {fileID: 173540326}
   - {fileID: 7192286199759887337}
   - {fileID: 760091545}
+  - {fileID: 2044852644}
